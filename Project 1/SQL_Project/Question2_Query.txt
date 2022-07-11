@@ -1,0 +1,9 @@
+/* Question 2: I want to know the average rating of each category and their rentals */
+select c.name, round(avg (f.rental_rate),2) as Average_Rating, count(r.rental_id) as rental_count
+from rental r, category c, film f, film_category fc, inventory i
+where 	c.category_id = fc.category_id and
+		f.film_id = fc.film_id and
+        i.inventory_id = r.inventory_id and
+        f.film_id = i.film_id
+group by c.name
+order by Average_Rating desc
